@@ -19,9 +19,9 @@
     const shroomStore = useShroomStore()
 
     onMounted(async () => {
-        const shrooms = await shroomStore.getShroomsList()
+        await shroomStore.getShroomsList()
 
-        if (shrooms.length == 0) {
+        if (shroomStore.shrooms.length == 0) {
             alert("Il faut être connecté pour voir les champignons")
             router.push('/login')
         }
