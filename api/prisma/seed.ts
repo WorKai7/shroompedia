@@ -8,11 +8,13 @@ async function main() {
         data: [
             {
                 username: "admin",
-                email: "admin@admin.com"
+                email: "admin@admin.com",
+                password: "admin"
             },
             {
                 username: "user",
-                email: "user@user.com"
+                email: "user@user.com",
+                password: "password123"
             }
         ]
     })

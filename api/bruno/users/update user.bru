@@ -7,11 +7,15 @@ meta {
 post {
   url: {{baseUrl}}/users/update/:id
   body: json
-  auth: none
+  auth: bearer
 }
 
 params:path {
   id: 4
+}
+
+auth:bearer {
+  token: {{token}}
 }
 
 body:json {

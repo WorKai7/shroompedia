@@ -5,11 +5,15 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/shrooms
+  url: {{baseUrl}}/shrooms/:id
   body: none
-  auth: inherit
+  auth: bearer
 }
 
-settings {
-  encodeUrl: true
+params:path {
+  id: 1
+}
+
+auth:bearer {
+  token: {{token}}
 }

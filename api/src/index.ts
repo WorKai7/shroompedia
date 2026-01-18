@@ -1,6 +1,7 @@
 import express from 'express'
 import {userRouter} from './user.route.js'
 import { shroomRouter } from "./shroom.route.js"
+import { authRouter } from "./auth.route.js"
 
 export const app = express()
 
@@ -14,6 +15,7 @@ app.get('/', (_req, res) => {
 
 app.use('/users', userRouter)
 app.use("/shrooms", shroomRouter)
+app.use("/auth", authRouter)
 
 app.listen(port, () => {
     console.log(`Mon serveur démarre sur le port ${port}`)

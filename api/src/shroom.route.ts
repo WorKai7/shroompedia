@@ -2,18 +2,19 @@ import "dotenv/config";
 import {Router} from 'express'
 import type { Request, Response } from 'express'
 import prisma from "./client.js"
+import { authenticateToken } from "./middleware/auth.js";
 
 
 export const shroomRouter = Router()
 
 
-shroomRouter.get('/', async (_req: Request, res: Response) => {
+shroomRouter.get('/', authenticateToken, async (_req: Request, res: Response) => {
     const shrooms = await prisma.shroom.findMany()
     res.status(200).json(shrooms)
 })
 
 
-shroomRouter.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
+shroomRouter.get('/:id', authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     const shroomId = req.params.id
     const shroom = await prisma.shroom.findUnique({
         where: {id: parseInt(shroomId)}
@@ -27,7 +28,7 @@ shroomRouter.get('/:id', async (req: Request<{ id: string }>, res: Response) => 
 })
 
 
-shroomRouter.post('/create', async (req: Request, res: Response) => {
+shroomRouter.post('/create', authenticateToken, async (req: Request, res: Response) => {
     const {name, sprite, description} = req.body
     
     try {
@@ -51,7 +52,7 @@ shroomRouter.post('/create', async (req: Request, res: Response) => {
 })
 
 
-shroomRouter.post("/update/:id", async (req: Request<{ id: string }>, res: Response) => {
+shroomRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
         const shroomToUpdate = await prisma.shroom.findUnique({
             where: {id: parseInt(req.params.id)}
@@ -81,7 +82,7 @@ shroomRouter.post("/update/:id", async (req: Request<{ id: string }>, res: Respo
 })
 
 
-shroomRouter.delete("/delete/:id", async (req: Request<{ id: string }>, res: Response) => {
+shroomRouter.delete("/delete/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
         const shroomToDelete = await prisma.shroom.findUnique({
             where: {id: parseInt(req.params.id)}

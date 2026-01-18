@@ -7,11 +7,15 @@ meta {
 post {
   url: {{baseUrl}}/shrooms/update/:id
   body: json
-  auth: none
+  auth: bearer
 }
 
 params:path {
   id: 2
+}
+
+auth:bearer {
+  token: {{token}}
 }
 
 body:json {

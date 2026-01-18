@@ -2,18 +2,19 @@ import "dotenv/config";
 import {Router} from 'express'
 import type { Request, Response } from 'express'
 import prisma from "./client.js"
+import { authenticateToken } from "./middleware/auth.js";
 
 
 export const userRouter = Router()
 
 
-userRouter.get('/', async (_req: Request, res: Response) => {
+userRouter.get('/', authenticateToken, async (_req: Request, res: Response) => {
     const users = await prisma.user.findMany()
     res.status(200).json(users)
 })
 
 
-userRouter.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
+userRouter.get('/:id', authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     const userId = req.params.id
     const user = await prisma.user.findUnique({
         where: {id: parseInt(userId)}
@@ -27,14 +28,15 @@ userRouter.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
 })
 
 
-userRouter.post('/create', async (req: Request, res: Response) => {
-    const {username, email} = req.body
+userRouter.post('/create', authenticateToken, async (req: Request, res: Response) => {
+    const {username, email, password} = req.body
     
     try {
         const user = await prisma.user.create({
             data: {
                 username: username,
-                email: email
+                email: email,
+                password: password
             }
         })
 
@@ -50,7 +52,7 @@ userRouter.post('/create', async (req: Request, res: Response) => {
 })
 
 
-userRouter.post("/update/:id", async (req: Request<{ id: string }>, res: Response) => {
+userRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
         const userToUpdate = await prisma.user.findUnique({
             where: {id: parseInt(req.params.id)}
@@ -80,7 +82,7 @@ userRouter.post("/update/:id", async (req: Request<{ id: string }>, res: Respons
 })
 
 
-userRouter.delete("/delete/:id", async (req: Request<{ id: string }>, res: Response) => {
+userRouter.delete("/delete/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
         const userToDelete = await prisma.user.findUnique({
             where: {id: parseInt(req.params.id)}
