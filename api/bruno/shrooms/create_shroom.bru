@@ -1,0 +1,19 @@
+meta {
+  name: create shroom
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/shrooms/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Stun Shroom",
+    "sprite": "images/stun_shroom.png",
+    "description": "Le Stun Shroom est un vicieux dans l'âme, il hypnotise ses adversaires à l'aide de ses trois yeux ensorcelants. Ses ennemis, complètement accablés se retrouvent dans l'impossibilité de se mouvoir. Un vrai traquenard !"
+  }
+}

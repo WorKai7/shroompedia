@@ -8,9 +8,17 @@
         "dev": "tsx watch ./src/index.ts",
         "start": "node ./build/index.js",
         "type-check": "tsc --noEmit",
-        "build": "tsc"
+        "build": "tsc",
+        "db:migrate": "prisma migrate dev",
+        "db:generate": "prisma generate",
+        "db:seed": "prisma db seed",
+        "db:studio": "prisma studio",
+        "db:push": "prisma db push",
+        "db:reset": "prisma migrate reset",
+        "db:setup": "prisma generate && prisma migrate dev && prisma db seed"
     },
     "dependencies": {
+        "@prisma/client": "^6.19.2",
         "dotenv": "^17.2.3",
         "express": "^5.2.1",
         "mysql2": "^3.16.1",
@@ -19,6 +27,7 @@
     "devDependencies": {
         "@types/express": "^5.0.6",
         "@types/node": "^25.0.9",
+        "prisma": "^6.19.2",
         "typescript": "^5.9.3"
     }
 }

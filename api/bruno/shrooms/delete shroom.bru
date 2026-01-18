@@ -1,0 +1,15 @@
+meta {
+  name: delete shroom
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{baseUrl}}/shrooms/delete/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 3
+}

@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  email    String @unique
+}
+
+model Shroom {
+  id            Int       @id @default(autoincrement())
+  name          String
+  sprite        String
+  description   String    @db.Text
+}
