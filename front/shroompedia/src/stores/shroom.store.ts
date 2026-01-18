@@ -5,15 +5,16 @@ import type { Shroom } from '../types/common.type';
 
 export const useShroomStore = defineStore('shroom', () => {
     const shrooms = ref<Shroom[]>([]);
-
+    
     const getShroomsList = async () => {
         try {
-            shrooms.value = await getShrooms();
+            return await getShrooms();
         } catch (error: any) {
             console.log(error.message);
             throw error;
         }
     }
+    
 
     return {getShroomsList, shrooms};
 });
