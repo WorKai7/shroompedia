@@ -1,11 +1,29 @@
-<script setup lang="ts"></script>
+<script lang="ts" setup>
+    import {NConfigProvider} from 'naive-ui';
+    import HeaderMenu from './components/HeaderMenu.component.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <n-config-provider>
+    <n-layout>
+      <n-layout-header>
+        <HeaderMenu/>
+      </n-layout-header>
+      <n-layout-content class="content">
+        <n-space justify="center">
+          <n-message-provider>
+            <router-view />
+          </n-message-provider>
+        </n-space>
+      </n-layout-content>
+    </n-layout>
+  </n-config-provider>
 </template>
 
-<style scoped></style>
+<style scoped>
+.content {
+  margin-top: 1em;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+</style>

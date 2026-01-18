@@ -28,7 +28,7 @@ userRouter.get('/:id', authenticateToken, async (req: Request<{ id: string }>, r
 })
 
 
-userRouter.post('/create', authenticateToken, async (req: Request, res: Response) => {
+userRouter.post('/create', async (req: Request, res: Response) => {
     const {username, email, password} = req.body
     
     try {

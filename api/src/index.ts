@@ -4,10 +4,23 @@ import { shroomRouter } from "./shroom.route.js"
 import { authRouter } from "./auth.route.js"
 import swaggerUi from 'swagger-ui-express'
 import {swaggerDocument} from './docs/index.js'
+import cors from "cors";
+import path from 'path'
+import { fileURLToPath } from 'url';
 
 export const app = express()
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use('/images', express.static(path.join(__dirname, '../images')));
+
 const port = 3000
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
 
 app.use(express.json())
 
