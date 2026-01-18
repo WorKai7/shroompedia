@@ -1,0 +1,331 @@
+openapi: 3.0.3
+info:
+  title: API Shrooms
+  version: 1.0.0
+  description: API pour gérer les shrooms (authentification JWT requise)
+
+paths:
+  /shrooms:
+    get:
+      tags:
+        - Shrooms
+      summary: Liste tous les shrooms
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Liste des shrooms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "Boom Shroom"
+                    sprite:
+                      type: string
+                      example: "/images/boom.png"
+                    description:
+                      type: string
+                      example: "Un shroom explosif"
+
+        '401':
+          description: Non authentifié
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Unauthorized"
+
+  /shrooms/{id}:
+    get:
+      tags:
+        - Shrooms
+      summary: Récupérer un shroom par ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Shroom trouvé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: "Boom Shroom"
+                  sprite:
+                    type: string
+                    example: "/images/boom.png"
+                  description:
+                    type: string
+                    example: "Un shroom explosif"
+
+        '401':
+          description: Non authentifié
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Unauthorized"
+
+        '404':
+          description: Shroom non trouvé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Shroom non trouvé"
+
+  /shrooms/create:
+    post:
+      tags:
+        - Shrooms
+      summary: Créer un shroom
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - sprite
+                - description
+              properties:
+                name:
+                  type: string
+                  example: "Ice Shroom"
+                sprite:
+                  type: string
+                  example: "/images/ice.png"
+                description:
+                  type: string
+                  example: "Un shroom glacé"
+      responses:
+        '201':
+          description: Shroom créé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Shroom créé avec succès"
+                  shroom:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      name:
+                        type: string
+                        example: "Ice Shroom"
+                      sprite:
+                        type: string
+                        example: "/images/ice.png"
+                      description:
+                        type: string
+                        example: "Un shroom glacé"
+
+        '400':
+          description: Erreur de création
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Erreur de validation"
+
+        '401':
+          description: Non authentifié
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Unauthorized"
+
+  /shrooms/update/{id}:
+    post:
+      tags:
+        - Shrooms
+      summary: Mettre à jour un shroom
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                sprite:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Shroom mis à jour
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Shroom mis à jour avec succès"
+                  shroom:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: "Boom Shroom V2"
+                      sprite:
+                        type: string
+                        example: "/images/boom2.png"
+                      description:
+                        type: string
+                        example: "Version améliorée"
+
+        '400':
+          description: Erreur de mise à jour
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Erreur de validation"
+
+        '401':
+          description: Non authentifié
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Unauthorized"
+
+        '404':
+          description: Shroom non trouvé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Shroom non trouvé"
+
+  /shrooms/delete/{id}:
+    delete:
+      tags:
+        - Shrooms
+      summary: Supprimer un shroom
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Shroom supprimé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Shroom supprimé avec succès"
+                  shroom:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: "Boom Shroom"
+
+        '401':
+          description: Non authentifié
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Unauthorized"
+
+        '404':
+          description: Shroom non trouvé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Shroom non trouvé"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
