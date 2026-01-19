@@ -8,6 +8,7 @@ import {useRouter} from 'vue-router'
 
 const router = useRouter();
 
+// Onglets de la barre de menu en haut avec leur route associées
 const menuOptions = computed(() => [
     {
         label: 'Accueil',

@@ -18,10 +18,11 @@
 
     const shroomStore = useShroomStore()
 
+    // Lorsque la page est montée, on appelle la fonction pour remplir la liste de shrooms grace a l'api
     onMounted(async () => {
-        await shroomStore.getShroomsList()
+        const shrooms = await shroomStore.getShroomsList()
 
-        if (shroomStore.shrooms.length == 0) {
+        if (shrooms.length == 0) {
             alert("Il faut être connecté pour voir les champignons")
             router.push('/login')
         }

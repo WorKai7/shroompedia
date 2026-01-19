@@ -8,12 +8,14 @@ import { authenticateToken } from "./middleware/auth.js";
 export const userRouter = Router()
 
 
+// GET: Récuperation de tous les users
 userRouter.get('/', authenticateToken, async (_req: Request, res: Response) => {
     const users = await prisma.user.findMany()
     res.status(200).json(users)
 })
 
 
+// GET: Récuperation d'un user en fonction de l'id
 userRouter.get('/:id', authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     const userId = req.params.id
     const user = await prisma.user.findUnique({
@@ -28,6 +30,7 @@ userRouter.get('/:id', authenticateToken, async (req: Request<{ id: string }>, r
 })
 
 
+// POST: Création d'un nouveau user
 userRouter.post('/create', async (req: Request, res: Response) => {
     const {username, email, password} = req.body
     
@@ -52,8 +55,10 @@ userRouter.post('/create', async (req: Request, res: Response) => {
 })
 
 
+// POST: Mise à jour d'un user
 userRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
+        // Vérfication de l'existance du user
         const userToUpdate = await prisma.user.findUnique({
             where: {id: parseInt(req.params.id)}
         })
@@ -61,7 +66,8 @@ userRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: stri
         if (!userToUpdate) {
             return res.status(404).json({error: "Utilisateur non trouvé"})
         }
-    
+        
+        // Mise à jour
         const data = req.body
     
         const user = await prisma.user.update({
@@ -82,8 +88,10 @@ userRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: stri
 })
 
 
+// DELETE: Suppression d'un user
 userRouter.delete("/delete/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
+        // Vérification de l'existance d'un user
         const userToDelete = await prisma.user.findUnique({
             where: {id: parseInt(req.params.id)}
         })
@@ -92,6 +100,7 @@ userRouter.delete("/delete/:id", authenticateToken, async (req: Request<{ id: st
             return res.status(404).json({error: "Utilisateur non trouvé"})
         }
 
+        // Suppression
         const userDeleted = await prisma.user.delete({
             where: {id: parseInt(req.params.id)}
         })

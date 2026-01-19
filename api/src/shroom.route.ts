@@ -7,13 +7,14 @@ import { authenticateToken } from "./middleware/auth.js";
 
 export const shroomRouter = Router()
 
-
+// GET: liste de tous les shrooms
 shroomRouter.get('/', authenticateToken, async (_req: Request, res: Response) => {
     const shrooms = await prisma.shroom.findMany()
     res.status(200).json(shrooms)
 })
 
 
+// GET: récupération d'un shroom en fonction de son id
 shroomRouter.get('/:id', authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     const shroomId = req.params.id
     const shroom = await prisma.shroom.findUnique({
@@ -28,6 +29,7 @@ shroomRouter.get('/:id', authenticateToken, async (req: Request<{ id: string }>,
 })
 
 
+// POST: Création d'un shroom
 shroomRouter.post('/create', authenticateToken, async (req: Request, res: Response) => {
     const {name, sprite, description} = req.body
     
@@ -52,8 +54,10 @@ shroomRouter.post('/create', authenticateToken, async (req: Request, res: Respon
 })
 
 
+// POST: Mise à jour d'un shroom
 shroomRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
+        // Vérification si le shroom voulant être mis à jour existe
         const shroomToUpdate = await prisma.shroom.findUnique({
             where: {id: parseInt(req.params.id)}
         })
@@ -62,6 +66,7 @@ shroomRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: st
             return res.status(404).json({error: "Shroom non trouvé"})
         }
     
+        // Mise à jour du shroom
         const data = req.body
     
         const shroom = await prisma.shroom.update({
@@ -82,8 +87,10 @@ shroomRouter.post("/update/:id", authenticateToken, async (req: Request<{ id: st
 })
 
 
+// DELETE: Suppression d'un shroom
 shroomRouter.delete("/delete/:id", authenticateToken, async (req: Request<{ id: string }>, res: Response) => {
     try {
+        // Vérification de l'existance du shroom
         const shroomToDelete = await prisma.shroom.findUnique({
             where: {id: parseInt(req.params.id)}
         })
@@ -92,6 +99,7 @@ shroomRouter.delete("/delete/:id", authenticateToken, async (req: Request<{ id: 
             return res.status(404).json({error: "Shroom non trouvé"})
         }
 
+        // Suppression
         const shroomDeleted = await prisma.shroom.delete({
             where: {id: parseInt(req.params.id)}
         })

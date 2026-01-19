@@ -1,9 +1,12 @@
 import prisma from "../src/client.js"
 
+// Seed permettant de peupler la base de données avec des données de base
 async function main() {
+    // Suppression de tout
     await prisma.user.deleteMany()
     await prisma.shroom.deleteMany()
 
+    // Création des données de base
     await prisma.user.createMany({
         data: [
             {

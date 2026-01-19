@@ -22,6 +22,7 @@
     
     const apiUrl = import.meta.env.VITE_API_URL
 
+    // Props ou on passe un pokemon pour l'afficher dans la carte
     defineProps({
         shroom: {
             type: Object as PropType<Shroom>,

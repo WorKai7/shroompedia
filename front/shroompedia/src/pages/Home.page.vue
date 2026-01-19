@@ -25,6 +25,7 @@
 
     const chemin = apiUrl + "/images/splash.png"
 
+    // Redirection vers login si on est pas connecté, sinon shrooms
     const redirect = () => {
         if (userStore.isAuthenticated) {
             router.push('/shrooms')

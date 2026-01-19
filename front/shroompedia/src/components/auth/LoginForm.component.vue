@@ -1,4 +1,5 @@
 <template>
+    <!-- Formulaire de login avec champ mail et mot de passe -->
     <n-form>
         <n-form-item path="email" label="Email">
             <n-input v-model:value="email" placeholder="Entrez votre email"></n-input>
@@ -37,13 +38,16 @@
     const message = useMessage();
     const userStore = useUserStore();
 
+    // Fonction de login lors du clic sur Login
     const login = async () => {
+        // Préparation de l'objet user à introduire en bdd
         const user: User = {
             username: username.value,
             email: email.value,
             password: password.value
         }
-
+        
+        // Mise a jour bdd
         try {
             await userStore.login(user);
             message.success("Connexion réussie");

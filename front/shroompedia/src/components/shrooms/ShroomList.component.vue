@@ -1,6 +1,7 @@
 <template>
     <div class="list">
-        <div v-for="shroom in shroomStore.shrooms">
+        <!-- On affiche chaque pokemon dans la liste des pokemons -->
+        <div v-for="shroom in shrooms">
             <ShroomCardComponent :shroom="shroom" />
         </div>
     </div>
@@ -12,6 +13,7 @@
     import { useShroomStore } from '@/stores/shroom.store';
 
     const shroomStore = useShroomStore()
+    const shrooms = await shroomStore.getShroomsList()
 
 
 </script>

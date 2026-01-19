@@ -4,6 +4,7 @@ import type { User } from '../types/common.type';
 import { computed, ref } from 'vue';
 
 export const useUserStore = defineStore('user', () => {
+    // Fonction register pour post un user en api
     const register = async (user: User) => {
         try {
             await postUser(user);
@@ -13,6 +14,7 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
+    // Fonction login pour s'authentifier et mettre le token en localstorage
     const login = async (user: User) => {
         try {
             const response = await loginUser(user);
@@ -24,6 +26,7 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
+    // Fonction de récupération du user actuel
     const getCurrentUser = async (userId: number) => {
         try {
             const user: User = await getUser(userId);
@@ -34,6 +37,7 @@ export const useUserStore = defineStore('user', () => {
         }
     }
 
+    // Export du token et d'une variable pour savoir si on est connecté ou non
     const token = ref(localStorage.getItem("token"))
     const isAuthenticated = computed(() => !!token.value)
 

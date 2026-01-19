@@ -17,6 +17,7 @@
     import LoginFormComponent from "../components/auth/LoginForm.component.vue"
     import RegisterFormComponent from "../components/auth/RegisterForm.component.vue"
 
+    // On gère dans ce fichier les onglets login et register et on affiche le bon selon activeTab
     const activeTab = ref("login");
 
 </script>

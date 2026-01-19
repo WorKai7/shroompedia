@@ -8,7 +8,7 @@ export const useShroomStore = defineStore('shroom', () => {
 
     const getShroomsList = async () => {
         try {
-            shrooms.value = await getShrooms();
+            return await getShrooms();
         } catch (error: any) {
             console.log(error.message);
             throw error;

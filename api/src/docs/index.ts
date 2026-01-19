@@ -2,6 +2,7 @@ import YAML from 'yamljs'
 import path from 'path'
 import {fileURLToPath} from 'url'
 
+// Récupération du nom du dossier courant
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
