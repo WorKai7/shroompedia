@@ -29,7 +29,7 @@ CREATE TABLE `Shroom` (
   `sprite` varchar(191) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,17 @@ LOCK TABLES `Shroom` WRITE;
 set autocommit=0;
 INSERT INTO `Shroom` VALUES
 (4,'Classic Shroom','/images/towers/classic_shroom1.png','Le Classic Shroom est le champignon de base de ShroomTD, simpliste, mais efficace ! À l\'aide des ses projectiles rouges à points blancs ainsi que de sa bouche ultra extensible, il déraille les ennemis un à un sans aucun scrupule.'),
-(5,'Stun Shroom','/images/towers/stun_shroom.png','Le Stun Shroom est un vicieux dans l\'âme, il hypnotise ses adversaires à l\'aide de ses trois yeux ensorcelants. Ses ennemis, complètement accablés se retrouvent dans l\'impossibilité de se mouvoir. Un vrai traquenard !');
+(5,'Stun Shroom','/images/towers/stun_shroom.png','Le Stun Shroom est un vicieux dans l\'âme, il hypnotise ses adversaires à l\'aide de ses trois yeux ensorcelants. Ses ennemis, complètement accablés se retrouvent dans l\'impossibilité de se mouvoir. Un vrai traquenard !'),
+(6,'Boom Shroom','/images/towers/boom_shroom.png','Le Boom Shroom est un Shroom au tempérament explosif (littéralement)'),
+(7,'Algae Shroom','/images/towers/algae_shroom_not_placed.png','Le Algae Shroom est une sous-espèce du LilyPad Shroom qui est apparu dans les marécages, il possède des algues à la place d\'un nénuphar afin de mieux se camoufler dans son environnement'),
+(8,'Gangsta Shroom','/images/towers/gangsta_shroom1.png','Le Gangsta Shroom est un véritable bandit, c\'est le Shroom le plus stylé du quartier, il ne se sépare jamais de son fédora fétiche'),
+(9,'LilyPad Shroom','/images/towers/lilypad_shroom_not_placed.png','Le LilyPad Shroom est la première espèce de Shroom aquatique, il s\'est entraînement longuement avec le Wizard Shroom afin de pouvoir manipuler l\'eau pour s\'en servir d\'arme contre ses adversaires'),
+(10,'Random Shroom','/images/towers/random_shroom.png','Le Random Shroom est une espèce très mystérieuse, apparu très peu de fois au cours de l\'histoire, ses apparitions semblent n\'avoir aucun facteur en commun les unes avec les autres'),
+(11,'Sniper Shroom','/images/towers/sniper_shroom.png','Le Sniper Shroom est doté d\'un acuité visuelle hors de commun, équipé de son Dragunov SVD, il enchaîne les headshots collatéraux avec une aise sans égale.'),
+(12,'Spirit Shroom','/images/towers/spirit_shroom2.png','Le Spirit Shroom a toujours vécu seul, lors de sa mort, son regret de ne pas avoir d\'amis a retenu son âme sur le plan matériel. Dans son malheur, il trouva ce qu\'il lui manqua toute sa vie, un ami...'),
+(13,'Urchin Shroom','/images/towers/urchin_shroom_not_placed.png','\"Qui s\'y frotte s\'y pique\" est la meilleure manière de décrire la personnalité du Urchin Shroom, en effet, d\'un naturel aigri et facilement vexable, les malheureux qui osent passer sur son territoire n\'en ressortent jamais entier'),
+(14,'Water Strider Shroom','/images/towers/water_strider_shroom_not_placed.png','Si vous pensiez avoir aperçu quelque chose de très rapide sur l\'eau, n\'ayez crainte, il ne s\'agit la que du Water Strider Shroom, en effet, il est capable d\'atteindre des pointes de vitesse à 300km/h tant qu\'il ne brise pas la tension de surface'),
+(15,'Wizard Shroom','/images/towers/wizard_shroom.png','Maître de tous les éléments, gardien des savoirs, le Wizard Shroom est une des entités les plus connues, puissantes et importantes de ce monde. Cependant, il se fait un plaisir à enseigner à ceux qui n\'ont pas peur de connaître les secrets du monde');
 /*!40000 ALTER TABLE `Shroom` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -123,4 +133,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-01-18 22:21:30
+-- Dump completed on 2026-01-19  9:33:49
