@@ -6,6 +6,8 @@
 - Jérôme Vandewalle
 - Scotty Pruvost
 
+- Groupe 8
+- 
 ## Version
 - v0.0.0
 - Dernière mise à jour : 18 Janvier 2026
