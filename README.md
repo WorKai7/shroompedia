@@ -4,7 +4,7 @@
 
 ## Développeurs
 - Jérôme Vandewalle
-- (Scotty Pruvost)
+- Scotty Pruvost
 
 ## Version
 - v0.0.0
